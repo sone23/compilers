@@ -117,7 +117,7 @@ IdentifierNode* ParserClass::Identifier()
 
 ExpressionNode* ParserClass::Expression()
 {
-	ExpressionNode* en = Relational();
+	ExpressionNode* en = Or();
 	return en;
 }
 
@@ -218,6 +218,32 @@ ExpressionNode* ParserClass::PlusMinus()
 		{
 			return current;
 		}
+	}
+}
+
+ExpressionNode* ParserClass::And()
+{
+	ExpressionNode* current = Relational();
+	while (true) {
+		TokenType tt = mSc->PeekNextToken().GetTokenType();
+		if (tt == AND) {
+			Match(tt);
+			current = new AndNode(current, Relational());
+		}
+		return current;
+	}
+}
+
+ExpressionNode* ParserClass::Or()
+{
+	ExpressionNode* current = And();
+	while (true) {
+		TokenType tt = mSc->PeekNextToken().GetTokenType();
+		if (tt == OR) {
+			Match(tt);
+			current = new OrNode(current, And());
+		}
+		return current;
 	}
 }
 

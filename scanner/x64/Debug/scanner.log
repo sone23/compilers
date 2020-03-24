@@ -4,6 +4,5 @@
   Scanner.cpp
 E:\spring2020\compilers\master\scanner\Scanner.cpp(37,9): warning C4244: 'initializing': conversion from 'std::streamoff' to 'char', possible loss of data
   StateMachine.cpp
-  Token.cpp
   Generating Code...
   scanner.vcxproj -> E:\spring2020\compilers\master\x64\Debug\scanner.exe

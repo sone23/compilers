@@ -3,7 +3,7 @@ void main()
 // hi
  int sum;
  sum = 35 + 400;
-while(sum == 440){
+while(sum == 440 || 1 != 1){
   cout << sum;
   sum = sum + 1;
  }

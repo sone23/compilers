@@ -33,6 +33,7 @@ StateMachineClass::StateMachineClass()
 	mLegalMoves[START_STATE][DIVIDE_CHAR] = DIVIDE_STATE;
 	mLegalMoves[START_STATE][EXCLAMATION_CHAR] = EXCLAMATION_STATE;
 	mLegalMoves[START_STATE][AND_CHAR] = HALF_AND_STATE;
+	mLegalMoves[START_STATE][OR_CHAR] = HALF_OR_STATE;
 
 	mLegalMoves[COMMENT_STATE][ENDFILE_CHAR] = ENDFILE_STATE;
 	mLegalMoves[COMMENT_STATE][PLUS_CHAR] = COMMENT_STATE;
@@ -52,6 +53,7 @@ StateMachineClass::StateMachineClass()
 	mLegalMoves[COMMENT_STATE][DIVIDE_CHAR] = COMMENT_STATE;
 	mLegalMoves[COMMENT_STATE][EXCLAMATION_CHAR] = COMMENT_STATE;
 	mLegalMoves[COMMENT_STATE][AND_CHAR] = COMMENT_STATE;
+	mLegalMoves[COMMENT_STATE][OR_CHAR] = COMMENT_STATE;
 
 
 	mLegalMoves[LESSTHAN_STATE][LESSTHAN_CHAR] = INSERTION_STATE;
@@ -79,12 +81,14 @@ StateMachineClass::StateMachineClass()
 	mLegalMoves[LINECOMMENT_STATE][DIVIDE_CHAR] = LINECOMMENT_STATE;
 	mLegalMoves[LINECOMMENT_STATE][EXCLAMATION_CHAR] = LINECOMMENT_STATE;
 	mLegalMoves[LINECOMMENT_STATE][AND_CHAR] = LINECOMMENT_STATE;
+	mLegalMoves[LINECOMMENT_STATE][OR_CHAR] = LINECOMMENT_STATE;
 
 	mLegalMoves[ASSIGNMENT_STATE][ASSIGNMENT_CHAR] = EQUAL_STATE;
 	mLegalMoves[LESSTHAN_STATE][ASSIGNMENT_CHAR] = LESSEQUAL_STATE;
 	mLegalMoves[GREATEREQUAL_STATE][ASSIGNMENT_CHAR] = GREATEREQUAL_STATE;
 	mLegalMoves[EXCLAMATION_STATE][ASSIGNMENT_CHAR] = NOTEQUAL_STATE;
 	mLegalMoves[HALF_AND_STATE][AND_CHAR] = AND_STATE;
+	mLegalMoves[HALF_OR_STATE][OR_CHAR] = OR_STATE;
 
 
 	mLegalMoves[DIVIDE_STATE][DIVIDE_CHAR] = LINECOMMENT_STATE;
@@ -116,6 +120,8 @@ StateMachineClass::StateMachineClass()
 	mCorrespondingTokenTypes[DIVIDE_STATE] = DIVIDE_TOKEN;
 	mCorrespondingTokenTypes[TIMES_STATE] = TIMES_TOKEN;
 	mCorrespondingTokenTypes[ENDFILE_STATE] = ENDFILE_TOKEN;
+	mCorrespondingTokenTypes[AND_STATE] = AND;
+	mCorrespondingTokenTypes[OR_STATE] = OR;
 }
 
 MachineState StateMachineClass::UpdateState(char currentCharacter, TokenType& correspondingTokenType)
@@ -149,6 +155,8 @@ MachineState StateMachineClass::UpdateState(char currentCharacter, TokenType& co
 		charType = EXCLAMATION_CHAR;
 	else if (currentCharacter == '&')
 		charType = AND_CHAR;
+	else if (currentCharacter == '|')
+		charType = OR_CHAR;
 	if (isspace(currentCharacter))
 		charType = WHITESPACE_CHAR;
 	if (currentCharacter == '\n')

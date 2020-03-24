@@ -354,3 +354,25 @@ void WhileStatementNode::Interpret()
 		mStatement->Interpret();
 	}
 }
+
+AndNode::AndNode(ExpressionNode* left, ExpressionNode* right) 
+	: BinaryOperatorNode(left, right) {
+}
+
+int AndNode::Evaluate()
+{
+	if (mLhs->Evaluate() && mRhs->Evaluate())
+		return 1;
+	return 0;
+}
+
+OrNode::OrNode(ExpressionNode* left, ExpressionNode* right)
+	: BinaryOperatorNode(left, right) {
+}
+
+int OrNode::Evaluate()
+{
+	if (mLhs->Evaluate() || mRhs->Evaluate())
+		return 1;
+	return 0;
+}

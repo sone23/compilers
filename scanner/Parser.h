@@ -19,6 +19,7 @@ public:
 	ExpressionNode* TimesDivide();
 	ExpressionNode* PlusMinus();
 	ExpressionNode* And();
+	ExpressionNode* Or();
 	ExpressionNode* Factor();
 	IntegerNode* Integer();
 	IfStatementNode* IfStatement();

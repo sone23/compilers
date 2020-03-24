@@ -184,7 +184,15 @@ public:
 };
 
 class AndNode : public BinaryOperatorNode {
+public:
+	AndNode(ExpressionNode* left, ExpressionNode* right);
+	int Evaluate();
+};
 
+class OrNode : public BinaryOperatorNode {
+public:
+	OrNode (ExpressionNode* left, ExpressionNode* right);
+	int Evaluate();
 };
 class IfStatementNode : public StatementNode {
 public:
